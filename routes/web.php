@@ -12,10 +12,21 @@ use Illuminate\Support\Str;
 |
 */
 
+/*
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
 $router->get('/key', function() {
     return Str::random(32);
+});
+*/
+
+
+$router->group(['prefix' => 'api'], function() use ($router) {
+    $router->post('employee', 'EmployeeController@store');
+    $router->get('employee', 'EmployeeController@index');
+    $router->get('employee/{id}', 'EmployeeController@show');
+    $router->put('employee/{id}', 'EmployeeController@update');
+    $router->delete('employee/{id}', 'EmployeeController@destroy');
 });
